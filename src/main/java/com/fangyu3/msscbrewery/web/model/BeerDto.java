@@ -4,6 +4,10 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Null;
+import javax.validation.constraints.Positive;
 import java.util.UUID;
 
 // Getter and Setters, hash, equal
@@ -12,9 +16,13 @@ import java.util.UUID;
 @AllArgsConstructor
 public class BeerDto {
 
+    @Null
     private UUID id;
+    @NotBlank
     private String beerName;
+    @NotBlank
     private String beerStyle;
+    @Positive
     private Long upc;
 
     public static BeerDtoBuilder builder() {
@@ -22,6 +30,8 @@ public class BeerDto {
     }
 
     public static class BeerDtoBuilder {
+
+
         private UUID id;
         private String beerName;
         private String beerStyle;

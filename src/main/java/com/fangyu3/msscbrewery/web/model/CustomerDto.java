@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.validation.constraints.*;
 import java.util.UUID;
 
 @Data
@@ -11,6 +12,10 @@ import java.util.UUID;
 @AllArgsConstructor
 public class CustomerDto {
     private UUID id;
+
+    @NotBlank
+    // minimum, maximum for string validation
+    @Size(min=3,max=100)
     private String name;
 
     public static CustomerDtoBuilder builder() {
