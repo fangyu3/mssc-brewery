@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.ConstraintViolationException;
@@ -27,7 +28,7 @@ public class CustomerController {
     }
 
     @PostMapping
-    public ResponseEntity saveCustomer(@Valid @RequestBody CustomerDto customerDto) {
+    public ResponseEntity saveCustomer(@Validated @RequestBody CustomerDto customerDto) {
         CustomerDto savedDto = customerService.saveCustomer(customerDto);
 
         HttpHeaders httpHeaders = new HttpHeaders();
@@ -38,7 +39,7 @@ public class CustomerController {
 
     @PutMapping("/{customerId}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void updateCustomer(@PathVariable UUID customerId, @Valid @RequestBody CustomerDto customerDto) {
+    public void updateCustomer(@PathVariable UUID customerId, @Validated @RequestBody CustomerDto customerDto) {
         customerService.updateCustomer(customerId,customerDto);
     }
 

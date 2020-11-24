@@ -2,6 +2,7 @@ package com.fangyu3.msscbrewery.web.controller;
 
 import com.fangyu3.msscbrewery.services.BeerService;
 import com.fangyu3.msscbrewery.web.model.BeerDto;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -12,6 +13,7 @@ import javax.validation.Valid;
 import java.util.UUID;
 
 
+@Slf4j
 @RestController
 // api versioning
 @RequestMapping("/api/v1/beer")
@@ -27,6 +29,9 @@ public class BeerController {
 
     @PostMapping
     public ResponseEntity saveBeer(@Valid @RequestBody BeerDto beerDto) {
+
+        log.debug("In handle post request..");
+
         BeerDto savedDto = beerService.saveBeer(beerDto);
         HttpHeaders httpHeaders = new HttpHeaders();
 
